@@ -25,5 +25,5 @@ new_data = fft_tool.process()
 ```
 
 # Author
-* Oka_D
+* Oka.D.
 * okamotoschool2018@gmail.com

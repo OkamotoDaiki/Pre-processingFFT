@@ -43,13 +43,16 @@ class ZeroPadding:
         left_zeropadding_nframe = None
         right_zeropadding_nframe = None
         half_zeropadding_nframe = None
+        print("nframe : {0}".format(zeropadding_nframe))
         if zeropadding_nframe % 2 != 0:
             if self.add_zeroarray == "left":
                 left_zeropadding_nframe = int(zeropadding_nframe / 2) + 1
                 right_zeropadding_nframe = int(zeropadding_nframe / 2)
+                print("Throught left")
             elif self.add_zeroarray == "right":
                 left_zeropadding_nframe = int(zeropadding_nframe / 2)
                 right_zeropadding_nframe = int(zeropadding_nframe / 2) + 1
+                print("Throught right")
             else:
                 print("Argument error. Argument candidates are left or right.")
                 sys.exit()
