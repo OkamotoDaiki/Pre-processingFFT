@@ -2,9 +2,10 @@ import numpy as np
 import sys
 
 class ZeroPadding:
-    def __init__(self, data, position="both", add_zeroarray="left"):
+    def __init__(self, data, max_nframe=None, position="both", add_zeroarray="left"):
         self.position = position
         self.data = data
+        self.max_nframe = max_nframe
         self.nframe = len(data)
         self.add_zeroarray = add_zeroarray
  
@@ -12,8 +13,17 @@ class ZeroPadding:
     def process(self):
         """
         Flow process of zeropadding.
-        """
-        zeropadding_nframe = self.next_power2(self.nframe) - self.nframe
+        """ 
+        zeropadding_nframe = None
+        if isinstance(self.max_nframe, int):
+            if self.max_nframe > 0:
+                zeropadding_nframe = self.next_power2(self.max_nframe) - self.nframe
+            else:
+                print("Argument error. max_nframe must be greater than 0.")
+                sys.exit()                
+        else:
+            zeropadding_nframe = self.next_power2(self.nframe) - self.nframe
+
         if self.position == "both":
             return self.both_zeropadding(zeropadding_nframe)
         elif self.position == "left":
